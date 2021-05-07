@@ -9,6 +9,21 @@
       Title="AllClient">
 
     <Grid>
-        
+        <DataGrid x:Name="ClientDtg">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Имя" Binding="{Binding Firstname}" Width="*"/>
+                <DataGridTextColumn Header="Фамилия" Binding="{Binding Lastname}" Width="*"/>
+                <DataGridTextColumn Header="Телефон" Binding="{Binding Phone}" Width="*"/>
+                <DataGridTextColumn Header="E-mail" Binding="{Binding E_mail}" Width="*"/>
+                <DataGridTextColumn Header="Пол" Binding="{Binding Genders.Name}" Width="*"/>
+                <DataGridTemplateColumn Width="Auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Click="Edit" Content="🖊" Width="Auto"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Page>

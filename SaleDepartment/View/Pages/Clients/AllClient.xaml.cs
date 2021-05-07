@@ -20,9 +20,15 @@ namespace SaleDepartment.View.Pages.Clients
     /// </summary>
     public partial class AllClient : Page
     {
+        private Helper.ClientHelper clientHelper = new Helper.ClientHelper();
         public AllClient()
         {
             InitializeComponent();
+            ClientDtg.ItemsSource = clientHelper.GetClients();
+        }
+        private void Edit(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new EditClient(sender as Button));
         }
     }
 }

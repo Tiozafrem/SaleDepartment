@@ -21,7 +21,7 @@ namespace SaleDepartment.Helper
             }
             catch (System.Data.Entity.Core.EntityException)
             {
-                MsgBoxHelper.ShowError("Ошибка подклюения к базе данных");
+                MsgBoxHelper.ShowError("Ошибка подклюения к базе данных.");
                 result = new List<Model.Product>();
             }
             catch (Exception ex)
@@ -54,12 +54,17 @@ namespace SaleDepartment.Helper
 
         public bool Delete()
         {
-            if (MsgBoxHelper.ShowQuestion("Вы действительно хотите удалить этот продукт? С ним станет невозможно сделать новой заказ, но в существующих заказах он останется"))
+            if (MsgBoxHelper.ShowQuestion("Вы действительно хотите удалить этот продукт? С ним станет невозможно сделать новой заказ, но в существующих заказах он останется."))
             {
                 editProduct.IsActual = false;
                 return TrySave();
             }
             return false;
+        }
+
+        public bool SaveProduct()
+        {
+            return TrySave();
         }
     }
 }

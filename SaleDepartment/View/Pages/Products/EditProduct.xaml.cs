@@ -37,7 +37,7 @@ namespace SaleDepartment.View.Pages.Products
 
         private void Save(object sender, RoutedEventArgs e)
         {
-            if (productHelper.TrySave())
+            if (productHelper.SaveProduct())
                 DeleteBtn.Visibility = Visibility.Visible;
         }
 

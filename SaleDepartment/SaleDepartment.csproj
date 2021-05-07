@@ -69,7 +69,8 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Helper\CallHelper.cs" />
-    <Compile Include="Helper\ClietnHelper.cs" />
+    <Compile Include="Helper\ClientHelper.cs" />
+    <Compile Include="Helper\GenderHelper.cs" />
     <Compile Include="Helper\ModelHelper.cs" />
     <Compile Include="Helper\MsgBoxHelper.cs" />
     <Compile Include="Helper\ProductHelper.cs" />

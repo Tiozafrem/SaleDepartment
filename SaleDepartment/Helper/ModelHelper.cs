@@ -21,11 +21,12 @@ namespace SaleDepartment.Helper
             Context = new Model.SaleDepartmentEntities();
         }
 
-        public bool TrySave()
+        protected bool TrySave()
         {
             try
             {
                 Context.SaveChanges();
+                MsgBoxHelper.ShowInfo("Изменения успешны сохранены");
             }
             catch (System.Data.Entity.Core.EntityException)
             {

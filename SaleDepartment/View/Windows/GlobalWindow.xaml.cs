@@ -42,6 +42,7 @@ namespace SaleDepartment.View.Windows
         {
             modelHelper.RollBack();
             contentFrame.Navigate(new Pages.Products.EditProduct());
+
         }
 
         private void Allproduct(object sender, RoutedEventArgs e)
@@ -68,9 +69,11 @@ namespace SaleDepartment.View.Windows
             contentFrame.Navigate(new Pages.Calls.AllCall());
         }
 
+
         private void Exit(object sender, RoutedEventArgs e)
         {
             Environment.Exit(0);
         }
+
     }
 }

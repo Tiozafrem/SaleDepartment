@@ -17,7 +17,7 @@ namespace SaleDepartment.Helper
             }
             catch (System.Data.Entity.Core.EntityException)
             {
-                MsgBoxHelper.ShowError("Ошибка подклюения к базе данных");
+                MsgBoxHelper.ShowError("Ошибка подклюения к базе данных.");
                 result = new List<Model.Call>();
             }
             catch (Exception ex)

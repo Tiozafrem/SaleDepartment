@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SaleDepartment.Helper
 {
-    class UserHelper: ModelHelper
+    class UserHelper : ModelHelper
     {
         ModelHelper modelHelper = new ModelHelper();
 
@@ -14,15 +14,27 @@ namespace SaleDepartment.Helper
 
         public bool Login(string e_mail, string password)
         {
-            var user = Context.User.Where(i => i.E_mail == e_mail && i.Password == password && i.IsActual);
-            if (user.Count() == 1)
+            try
             {
-                User = user.FirstOrDefault();
-                return true;
+
+                var user = Context.User.Where(i => i.E_mail == e_mail && i.Password == password && i.IsActual);
+                if (user.Count() == 1)
+                {
+                    User = user.FirstOrDefault();
+                    return true;
+                }
+                MsgBoxHelper.ShowWarning("Не верные учетные данные.");
             }
-            MsgBoxHelper.ShowWarning("Ошибка входа");
+            catch (System.Data.Entity.Core.EntityException)
+            {
+                MsgBoxHelper.ShowError("Ошибка подклюения к базе данных.");
+            }
+            catch (Exception ex)
+            {
+                MsgBoxHelper.ShowError(ex);
+            }
             return false;
         }
-        
+
     }
 }
