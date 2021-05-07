@@ -19,6 +19,8 @@ namespace SaleDepartment.View.Windows
     /// </summary>
     public partial class GlobalWindow : Window
     {
+        Helper.ModelHelper modelHelper = new Helper.ModelHelper();
+
         public GlobalWindow()
         {
             InitializeComponent();
@@ -26,37 +28,49 @@ namespace SaleDepartment.View.Windows
 
         private void NewClient(object sender, RoutedEventArgs e)
         {
-
+            modelHelper.RollBack();
+            contentFrame.Navigate(new Pages.Clients.EditClient());
         }
 
         private void AllClient(object sender, RoutedEventArgs e)
         {
-
+            modelHelper.RollBack();
+            contentFrame.Navigate(new Pages.Clients.AllClient());
         }
 
         private void NewProduct(object sender, RoutedEventArgs e)
         {
-
+            modelHelper.RollBack();
+            contentFrame.Navigate(new Pages.Products.EditProduct());
         }
 
         private void Allproduct(object sender, RoutedEventArgs e)
         {
-
+            modelHelper.RollBack();
+            contentFrame.Navigate(new Pages.Products.AllProduct());
         }
 
         private void NewCall(object sender, RoutedEventArgs e)
         {
-
+            modelHelper.RollBack();
+            contentFrame.Navigate(new Pages.Calls.EditCall());
         }
 
         private void AllCall(object sender, RoutedEventArgs e)
         {
-
+            modelHelper.RollBack();
+            contentFrame.Navigate(new Pages.Calls.AllCall());
         }
 
         private void AllMyCall(object sender, RoutedEventArgs e)
         {
+            modelHelper.RollBack();
+            contentFrame.Navigate(new Pages.Calls.AllCall());
+        }
 
+        private void Exit(object sender, RoutedEventArgs e)
+        {
+            Environment.Exit(0);
         }
     }
 }

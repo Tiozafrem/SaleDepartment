@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SaleDepartment.Code
+namespace SaleDepartment.Helper
 {
     class ModelHelper
     {
@@ -15,13 +15,13 @@ namespace SaleDepartment.Code
             Context = new Model.SaleDepartmentEntities();
         }
 
-        protected static void RollBack()
+        public void RollBack()
         {
             Context?.Dispose();
             Context = new Model.SaleDepartmentEntities();
         }
 
-        protected static bool TrySave()
+        public bool TrySave()
         {
             try
             {

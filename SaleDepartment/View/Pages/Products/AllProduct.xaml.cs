@@ -20,9 +20,17 @@ namespace SaleDepartment.View.Pages.Products
     /// </summary>
     public partial class AllProduct : Page
     {
+        private Helper.ProductHelper productHelper;
         public AllProduct()
         {
             InitializeComponent();
+            productHelper = new Helper.ProductHelper();
+            ProductDtg.ItemsSource = productHelper.GetProducts();
+        }
+
+        private void Edit(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new EditProduct(sender as Button));
         }
     }
 }

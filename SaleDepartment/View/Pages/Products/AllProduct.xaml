@@ -9,6 +9,36 @@
       Title="AllProduct">
 
     <Grid>
-        
+        <DataGrid x:Name="ProductDtg">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Имя товара" Binding="{Binding Name}" Width="1.5*"/>
+                <DataGridTextColumn Header="Описание" Binding="{Binding Description}" Width="1.5*"/>
+                <DataGridTextColumn Header="Цена" Binding="{Binding Price}" Width="0.5*"/>
+                <DataGridTemplateColumn Width="1.5*" Header="Изображение">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Image>
+                                <Image.Source>
+                                    <Binding Path="Image">
+                                        <Binding.TargetNullValue>
+                                            <ImageSource>
+                                                /Resources/clear.png
+                                            </ImageSource>
+                                        </Binding.TargetNullValue>
+                                    </Binding>
+                                </Image.Source>
+                            </Image>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Width="Auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Click="Edit" Content="🖊" Width="Auto"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Page>

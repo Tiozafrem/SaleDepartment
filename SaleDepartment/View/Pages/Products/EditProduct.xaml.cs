@@ -20,9 +20,15 @@ namespace SaleDepartment.View.Pages.Products
     /// </summary>
     public partial class EditProduct : Page
     {
+        private Helper.ProductHelper productHelper = new Helper.ProductHelper();
         public EditProduct()
         {
             InitializeComponent();
+        }
+
+        public EditProduct(FrameworkElement button)
+        {
+            this.DataContext = productHelper.GetProduct(button);
         }
     }
 }

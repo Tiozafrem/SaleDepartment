@@ -21,7 +21,7 @@ namespace SaleDepartment.View.Windows
     {
         public string E_mail { get; set; }
         public string Password { get; set; }
-        private Code.UserHelper userHelper = new Code.UserHelper();
+        private Helper.UserHelper userHelper = new Helper.UserHelper();
 
         public AuthWindow()
         {

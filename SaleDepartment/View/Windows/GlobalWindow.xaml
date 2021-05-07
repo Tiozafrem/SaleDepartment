@@ -5,7 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SaleDepartment.View.Windows"
         mc:Ignorable="d"
-        Title="GlobalWindow" Height="450" Width="800">
+        Title="Отдел Продаж"
+        MinHeight="350" MinWidth="700"
+        Height="450" Width="800"
+        >
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.2*"/>
@@ -13,30 +16,30 @@
         </Grid.RowDefinitions>
 
         <Label Content="Отдел продаж" Grid.Row="0"/>
-        <Button Content="Выйти" HorizontalAlignment="Right" Grid.Row="0"/>
+        <Button Content="Выйти" HorizontalAlignment="Right" Grid.Row="0" Click="Exit"/>
 
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="0.4*"/>
+                <ColumnDefinition Width="0.28*"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <TreeView BorderThickness="0">
-                <TreeViewItem Header="Клиенты">
+                <TreeViewItem Header="Клиенты" IsExpanded="True">
                     <TreeViewItem Header="Новый клиент" Selected="NewClient"/>
                     <TreeViewItem Header="Все клиенты" Selected="AllClient"/>
                 </TreeViewItem>
-                <TreeViewItem Header="Продукты">
+                <TreeViewItem Header="Продукты" IsExpanded="True">
                     <TreeViewItem Header="Новый продукт" Selected="NewProduct"/>
                     <TreeViewItem Header="Все продукты" Selected="Allproduct"/>
                 </TreeViewItem>
-                <TreeViewItem Header="Звонки">
+                <TreeViewItem Header="Звонки" IsExpanded="True">
                     <TreeViewItem Header="Новый звонок" Selected="NewCall"/>
                     <TreeViewItem Header="Все звонки" Selected="AllCall"/>
                     <TreeViewItem Header="Все мои звонки" Selected="AllMyCall"/>
                 </TreeViewItem>
             </TreeView>
             
-            <Frame x:Name="ContentFrame" Grid.Column="1" NavigationUIVisibility="Hidden"/>
+            <Frame x:Name="contentFrame" Grid.Column="1" NavigationUIVisibility="Hidden"/>
         </Grid>
 
     </Grid>

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SaleDepartment.Code
+namespace SaleDepartment.Helper
 {
     class UserHelper: ModelHelper
     {
@@ -14,7 +14,7 @@ namespace SaleDepartment.Code
 
         public bool Login(string e_mail, string password)
         {
-            var user = Context.User.Where(i => i.E_mail == e_mail && i.Password == password);
+            var user = Context.User.Where(i => i.E_mail == e_mail && i.Password == password && i.IsActual);
             if (user.Count() == 1)
             {
                 User = user.FirstOrDefault();

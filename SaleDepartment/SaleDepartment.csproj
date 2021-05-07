@@ -68,9 +68,12 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Code\ModelHelper.cs" />
-    <Compile Include="Code\MsgBoxHelper.cs" />
-    <Compile Include="Code\UserHelper.cs" />
+    <Compile Include="Helper\CallHelper.cs" />
+    <Compile Include="Helper\ClietnHelper.cs" />
+    <Compile Include="Helper\ModelHelper.cs" />
+    <Compile Include="Helper\MsgBoxHelper.cs" />
+    <Compile Include="Helper\ProductHelper.cs" />
+    <Compile Include="Helper\UserHelper.cs" />
     <Compile Include="Model\Call.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -214,6 +217,7 @@
       <DependentUpon>Model.edmx</DependentUpon>
       <LastGenOutput>Model.cs</LastGenOutput>
     </Content>
+    <Resource Include="Resources\clear.png" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
