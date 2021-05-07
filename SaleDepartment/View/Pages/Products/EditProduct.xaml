@@ -5,10 +5,38 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:SaleDepartment.View.Pages.Products"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="350" d:DesignWidth="600"
       Title="EditProduct">
 
     <Grid>
-        
+        <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+            <StackPanel>
+                <GroupBox Header="Имя продукта">
+                    <TextBox MaxLength="50" Text="{Binding Name}"/>
+                </GroupBox>
+                <GroupBox Header="Описание продукта">
+                    <TextBox MaxLength="1000" Text="{Binding Description}" TextWrapping="Wrap" AcceptsReturn="True" Height="70"/>
+                </GroupBox>
+                <GroupBox Header="Цена продукта">
+                    <TextBox MaxLength="13" Text="{Binding Price}"/>
+                </GroupBox>
+                <Image x:Name="Image">
+                    <Image.Source>
+                        <Binding Path="Image">
+                            <Binding.TargetNullValue>
+                                <ImageSource>
+                                    /Resources/clear.png
+                                </ImageSource>
+                            </Binding.TargetNullValue>
+                        </Binding>
+                    </Image.Source>
+                </Image>
+                <Grid>
+                    <Button Content="Сохранить" Click="Save" HorizontalAlignment="Left"/>
+                    <Button Content="Новое изображение" Click="NewImage" HorizontalAlignment="Center" Width="150"/>
+                    <Button x:Name="DeleteBtn" Content="Удалить" Click="Delete" HorizontalAlignment="Right"/>
+                </Grid>
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 </Page>

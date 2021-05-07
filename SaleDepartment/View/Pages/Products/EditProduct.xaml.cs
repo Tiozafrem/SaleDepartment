@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,11 +25,37 @@ namespace SaleDepartment.View.Pages.Products
         public EditProduct()
         {
             InitializeComponent();
+            DeleteBtn.Visibility = Visibility.Collapsed;
+            this.DataContext = productHelper.NewProduct();
         }
 
         public EditProduct(FrameworkElement button)
         {
+            InitializeComponent();
             this.DataContext = productHelper.GetProduct(button);
+        }
+
+        private void Save(object sender, RoutedEventArgs e)
+        {
+            if (productHelper.TrySave())
+                DeleteBtn.Visibility = Visibility.Visible;
+        }
+
+        private void NewImage(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Multiselect = false;
+            openFileDialog.Filter = "Изображения | *.png; *.jpg";
+            if (openFileDialog.ShowDialog() == true)
+            {
+                Image.Source = new BitmapImage(new Uri(productHelper.NewImage(openFileDialog.FileName)));
+            }
+        }
+
+        private void Delete(object sender, RoutedEventArgs e)
+        {
+            if (productHelper.Delete())
+                NavigationService.Navigate(new AllProduct());
         }
     }
 }

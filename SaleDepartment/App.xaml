@@ -16,6 +16,7 @@
         </Style>
         <Style TargetType="TextBox" BasedOn="{StaticResource Base}">
 
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
         </Style>
         <Style TargetType="Label" BasedOn="{StaticResource Base}">
 
@@ -23,8 +24,8 @@
             <Setter Property="FontWeight" Value="Bold"/>
         </Style>
         <Style TargetType="Button" BasedOn="{StaticResource Base}">
-            <Setter Property="Margin" Value="5"/>
-            <Setter Property="Width" Value="70"/>
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Width" Value="90"/>
             <Setter Property="Height" Value="30"/>
             <Style.Resources>
                 <Style TargetType="Border">

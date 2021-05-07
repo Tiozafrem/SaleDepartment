@@ -18,11 +18,11 @@
         </Grid.RowDefinitions>
         <Label Content="Войти"/>
         <GroupBox Header="E-mail" Grid.Row="1">
-            <TextBox HorizontalAlignment="Stretch" MaxLength="255" Text="{Binding E_mail}"/>
+            <TextBox  MaxLength="255" Text="{Binding E_mail}"/>
         </GroupBox>
 
         <GroupBox Header="Пароль" Grid.Row="2">
-            <TextBox HorizontalAlignment="Stretch" MaxLength="50" Text="{Binding Password}"/>
+            <TextBox  MaxLength="50" Text="{Binding Password}"/>
         </GroupBox>
 
         <Button Click="Login" Content="Войти" Grid.Row="3" HorizontalAlignment="Left"/>
