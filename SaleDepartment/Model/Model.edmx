@@ -1,0 +1,519 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Хранилище SaleDepartmentModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="call_products">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="call_id" Type="int" Nullable="false" />
+          <Property Name="product_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="calls">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="client_id" Type="int" Nullable="false" />
+          <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="status_call_id" Type="int" Nullable="false" />
+          <Property Name="date_time_call" Type="datetime" Nullable="false" />
+          <Property Name="duration" Type="int" />
+          <Property Name="is_actual" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="clients">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="firstname" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="lastname" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="phone" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="e_mail" Type="nvarchar" MaxLength="250" />
+          <Property Name="gender_id" Type="int" Nullable="false" />
+          <Property Name="is_actual" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="genders">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="products">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="price" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="image" Type="varbinary(max)" />
+          <Property Name="description" Type="nvarchar" MaxLength="1000" />
+          <Property Name="is_actual" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="status_calls">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="firstname" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="lastname" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="gender_id" Type="int" Nullable="false" />
+          <Property Name="phone" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="e_mail" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="is_actual" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_call_products_calls">
+          <End Role="calls" Type="Self.calls" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="call_products" Type="Self.call_products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="calls">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="call_products">
+              <PropertyRef Name="call_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_call_products_products">
+          <End Role="products" Type="Self.products" Multiplicity="1" />
+          <End Role="call_products" Type="Self.call_products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="products">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="call_products">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_calls_peoples">
+          <End Role="clients" Type="Self.clients" Multiplicity="1" />
+          <End Role="calls" Type="Self.calls" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="clients">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="calls">
+              <PropertyRef Name="client_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_calls_status_calls">
+          <End Role="status_calls" Type="Self.status_calls" Multiplicity="1" />
+          <End Role="calls" Type="Self.calls" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="status_calls">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="calls">
+              <PropertyRef Name="status_call_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_calls_users">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="calls" Type="Self.calls" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="calls">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_peoples_genders">
+          <End Role="genders" Type="Self.genders" Multiplicity="1" />
+          <End Role="clients" Type="Self.clients" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="genders">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="clients">
+              <PropertyRef Name="gender_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_users_genders">
+          <End Role="genders" Type="Self.genders" Multiplicity="1" />
+          <End Role="users" Type="Self.users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="genders">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="users">
+              <PropertyRef Name="gender_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище SaleDepartmentModelContainer">
+          <EntitySet Name="call_products" EntityType="Self.call_products" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="calls" EntityType="Self.calls" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="clients" EntityType="Self.clients" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="genders" EntityType="Self.genders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="products" EntityType="Self.products" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="status_calls" EntityType="Self.status_calls" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_call_products_calls" Association="Self.FK_call_products_calls">
+            <End Role="calls" EntitySet="calls" />
+            <End Role="call_products" EntitySet="call_products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_call_products_products" Association="Self.FK_call_products_products">
+            <End Role="products" EntitySet="products" />
+            <End Role="call_products" EntitySet="call_products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_calls_peoples" Association="Self.FK_calls_peoples">
+            <End Role="clients" EntitySet="clients" />
+            <End Role="calls" EntitySet="calls" />
+          </AssociationSet>
+          <AssociationSet Name="FK_calls_status_calls" Association="Self.FK_calls_status_calls">
+            <End Role="status_calls" EntitySet="status_calls" />
+            <End Role="calls" EntitySet="calls" />
+          </AssociationSet>
+          <AssociationSet Name="FK_calls_users" Association="Self.FK_calls_users">
+            <End Role="users" EntitySet="users" />
+            <End Role="calls" EntitySet="calls" />
+          </AssociationSet>
+          <AssociationSet Name="FK_peoples_genders" Association="Self.FK_peoples_genders">
+            <End Role="genders" EntitySet="genders" />
+            <End Role="clients" EntitySet="clients" />
+          </AssociationSet>
+          <AssociationSet Name="FK_users_genders" Association="Self.FK_users_genders">
+            <End Role="genders" EntitySet="genders" />
+            <End Role="users" EntitySet="users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SaleDepartmentModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="SaleDepartmentEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Gender" EntityType="SaleDepartmentModel.Gender" />
+          <EntitySet Name="Product" EntityType="SaleDepartmentModel.Product" />
+          <EntitySet Name="StatusCall" EntityType="SaleDepartmentModel.StatusCall" />
+          <EntitySet Name="User" EntityType="SaleDepartmentModel.User" />
+          <AssociationSet Name="FK_users_genders" Association="SaleDepartmentModel.FK_users_genders">
+            <End Role="genders" EntitySet="Gender" />
+            <End Role="users" EntitySet="User" />
+          </AssociationSet>
+          <EntitySet Name="Client" EntityType="SaleDepartmentModel.Client" />
+          <AssociationSet Name="FK_peoples_genders" Association="SaleDepartmentModel.FK_peoples_genders">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="clients" EntitySet="Client" />
+          </AssociationSet>
+          <EntitySet Name="CallProduct" EntityType="SaleDepartmentModel.CallProduct" />
+          <EntitySet Name="Call" EntityType="SaleDepartmentModel.Call" />
+          <AssociationSet Name="FK_call_products_calls" Association="SaleDepartmentModel.FK_call_products_calls">
+            <End Role="calls" EntitySet="Call" />
+            <End Role="call_products" EntitySet="CallProduct" />
+          </AssociationSet>
+          <AssociationSet Name="FK_call_products_products" Association="SaleDepartmentModel.FK_call_products_products">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="call_products" EntitySet="CallProduct" />
+          </AssociationSet>
+          <AssociationSet Name="FK_calls_peoples" Association="SaleDepartmentModel.FK_calls_peoples">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="calls" EntitySet="Call" />
+          </AssociationSet>
+          <AssociationSet Name="FK_calls_status_calls" Association="SaleDepartmentModel.FK_calls_status_calls">
+            <End Role="StatusCall" EntitySet="StatusCall" />
+            <End Role="calls" EntitySet="Call" />
+          </AssociationSet>
+          <AssociationSet Name="FK_calls_users" Association="SaleDepartmentModel.FK_calls_users">
+            <End Role="User" EntitySet="User" />
+            <End Role="calls" EntitySet="Call" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="Gender">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Users" Relationship="SaleDepartmentModel.FK_users_genders" FromRole="genders" ToRole="users" />
+          <NavigationProperty Name="Clients" Relationship="SaleDepartmentModel.FK_peoples_genders" FromRole="Gender" ToRole="clients" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="IsActual" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="CallProducts" Relationship="SaleDepartmentModel.FK_call_products_products" FromRole="Product" ToRole="call_products" />
+        </EntityType>
+        <EntityType Name="StatusCall">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Calls" Relationship="SaleDepartmentModel.FK_calls_status_calls" FromRole="StatusCall" ToRole="calls" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Firstname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Lastname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="GenderId" Type="Int32" Nullable="false" />
+          <Property Name="Phone" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="E_mail" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="IsActual" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Genders" Relationship="SaleDepartmentModel.FK_users_genders" FromRole="users" ToRole="genders" />
+          <NavigationProperty Name="Calls" Relationship="SaleDepartmentModel.FK_calls_users" FromRole="User" ToRole="calls" />
+        </EntityType>
+        <Association Name="FK_users_genders">
+          <End Type="SaleDepartmentModel.Gender" Role="genders" Multiplicity="1" />
+          <End Type="SaleDepartmentModel.User" Role="users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="genders">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="users">
+              <PropertyRef Name="GenderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Firstname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Lastname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="E_mail" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="GenderId" Type="Int32" Nullable="false" />
+          <Property Name="IsActual" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Genders" Relationship="SaleDepartmentModel.FK_peoples_genders" FromRole="clients" ToRole="Gender" />
+          <NavigationProperty Name="Calls" Relationship="SaleDepartmentModel.FK_calls_peoples" FromRole="Client" ToRole="calls" />
+        </EntityType>
+        <Association Name="FK_peoples_genders">
+          <End Type="SaleDepartmentModel.Gender" Role="Gender" Multiplicity="1" />
+          <End Type="SaleDepartmentModel.Client" Role="clients" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="clients">
+              <PropertyRef Name="GenderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="CallProduct">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CallId" Type="Int32" Nullable="false" />
+          <Property Name="ProductId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Calls" Relationship="SaleDepartmentModel.FK_call_products_calls" FromRole="call_products" ToRole="calls" />
+          <NavigationProperty Name="Products" Relationship="SaleDepartmentModel.FK_call_products_products" FromRole="call_products" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="Call">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClientId" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="StatusCallId" Type="Int32" Nullable="false" />
+          <Property Name="DateTimeCall" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Duration" Type="Int32" />
+          <NavigationProperty Name="CallProducts" Relationship="SaleDepartmentModel.FK_call_products_calls" FromRole="calls" ToRole="call_products" />
+          <NavigationProperty Name="Clients" Relationship="SaleDepartmentModel.FK_calls_peoples" FromRole="calls" ToRole="Client" />
+          <NavigationProperty Name="StatusCalls" Relationship="SaleDepartmentModel.FK_calls_status_calls" FromRole="calls" ToRole="StatusCall" />
+          <NavigationProperty Name="Users" Relationship="SaleDepartmentModel.FK_calls_users" FromRole="calls" ToRole="User" />
+          <Property Name="IsActual" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_call_products_calls">
+          <End Type="SaleDepartmentModel.Call" Role="calls" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="SaleDepartmentModel.CallProduct" Role="call_products" Multiplicity="*" >
+          </End>
+          <ReferentialConstraint>
+            <Principal Role="calls">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="call_products">
+              <PropertyRef Name="CallId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_call_products_products">
+          <End Type="SaleDepartmentModel.Product" Role="Product" Multiplicity="1" />
+          <End Type="SaleDepartmentModel.CallProduct" Role="call_products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="call_products">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_calls_peoples">
+          <End Type="SaleDepartmentModel.Client" Role="Client" Multiplicity="1" />
+          <End Type="SaleDepartmentModel.Call" Role="calls" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="calls">
+              <PropertyRef Name="ClientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_calls_status_calls">
+          <End Type="SaleDepartmentModel.StatusCall" Role="StatusCall" Multiplicity="1" />
+          <End Type="SaleDepartmentModel.Call" Role="calls" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StatusCall">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="calls">
+              <PropertyRef Name="StatusCallId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_calls_users">
+          <End Type="SaleDepartmentModel.User" Role="User" Multiplicity="1" />
+          <End Type="SaleDepartmentModel.Call" Role="calls" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="calls">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище SaleDepartmentModelContainer" CdmEntityContainer="SaleDepartmentEntities">
+          <EntitySetMapping Name="Gender">
+            <EntityTypeMapping TypeName="SaleDepartmentModel.Gender">
+              <MappingFragment StoreEntitySet="genders">
+                <ScalarProperty Name="Name" ColumnName="name" />
+                <ScalarProperty Name="Id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Product">
+            <EntityTypeMapping TypeName="SaleDepartmentModel.Product">
+              <MappingFragment StoreEntitySet="products">
+                <ScalarProperty Name="IsActual" ColumnName="is_actual" />
+                <ScalarProperty Name="Description" ColumnName="description" />
+                <ScalarProperty Name="Image" ColumnName="image" />
+                <ScalarProperty Name="Price" ColumnName="price" />
+                <ScalarProperty Name="Name" ColumnName="name" />
+                <ScalarProperty Name="Id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StatusCall">
+            <EntityTypeMapping TypeName="SaleDepartmentModel.StatusCall">
+              <MappingFragment StoreEntitySet="status_calls">
+                <ScalarProperty Name="Name" ColumnName="name" />
+                <ScalarProperty Name="Id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User">
+            <EntityTypeMapping TypeName="SaleDepartmentModel.User">
+              <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="IsActual" ColumnName="is_actual" />
+                <ScalarProperty Name="E_mail" ColumnName="e_mail" />
+                <ScalarProperty Name="Phone" ColumnName="phone" />
+                <ScalarProperty Name="GenderId" ColumnName="gender_id" />
+                <ScalarProperty Name="Password" ColumnName="password" />
+                <ScalarProperty Name="Lastname" ColumnName="lastname" />
+                <ScalarProperty Name="Firstname" ColumnName="firstname" />
+                <ScalarProperty Name="Id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Client">
+            <EntityTypeMapping TypeName="SaleDepartmentModel.Client">
+              <MappingFragment StoreEntitySet="clients">
+                <ScalarProperty Name="IsActual" ColumnName="is_actual" />
+                <ScalarProperty Name="GenderId" ColumnName="gender_id" />
+                <ScalarProperty Name="E_mail" ColumnName="e_mail" />
+                <ScalarProperty Name="Phone" ColumnName="phone" />
+                <ScalarProperty Name="Lastname" ColumnName="lastname" />
+                <ScalarProperty Name="Firstname" ColumnName="firstname" />
+                <ScalarProperty Name="Id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CallProduct">
+            <EntityTypeMapping TypeName="SaleDepartmentModel.CallProduct">
+              <MappingFragment StoreEntitySet="call_products">
+                <ScalarProperty Name="ProductId" ColumnName="product_id" />
+                <ScalarProperty Name="CallId" ColumnName="call_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Call">
+            <EntityTypeMapping TypeName="SaleDepartmentModel.Call">
+              <MappingFragment StoreEntitySet="calls">
+                <ScalarProperty Name="IsActual" ColumnName="is_actual" />
+                <ScalarProperty Name="Duration" ColumnName="duration" />
+                <ScalarProperty Name="DateTimeCall" ColumnName="date_time_call" />
+                <ScalarProperty Name="StatusCallId" ColumnName="status_call_id" />
+                <ScalarProperty Name="UserId" ColumnName="user_id" />
+                <ScalarProperty Name="ClientId" ColumnName="client_id" />
+                <ScalarProperty Name="Id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
