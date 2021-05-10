@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -11,7 +12,16 @@ namespace SaleDepartment.Helper
     class ProductHelper : ModelHelper
     {
         private Model.Product editProduct;
+        public ObservableCollection<Model.Product> Products { get; set; }
 
+        public ProductHelper()
+        {
+            Products = new ObservableCollection<Model.Product>();
+        }
+        public ProductHelper(Model.Call editCall)
+        {
+            Products = new ObservableCollection<Model.Product>(editCall.CallProducts.Select(i => i.Products).ToList());
+        }
         public List<Model.Product> GetProducts()
         {
             List<Model.Product> result;
@@ -35,8 +45,8 @@ namespace SaleDepartment.Helper
         public Model.Product GetProduct(FrameworkElement button)
         {
 
-               editProduct = (button.DataContext as Model.Product);
-            return editProduct; 
+            editProduct = (button.DataContext as Model.Product);
+            return editProduct;
         }
 
         public Model.Product NewProduct()

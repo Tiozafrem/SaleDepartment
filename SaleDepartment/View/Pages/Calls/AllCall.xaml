@@ -9,6 +9,21 @@
       Title="AllCall">
 
     <Grid>
-        
+        <DataGrid x:Name="CallDtg">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Телефон клиента" Binding="{Binding Clients.Phone}" Width="*"/>
+                <DataGridTextColumn Header="Пол" Binding="{Binding Clients.Genders.Name}" Width="*"/>
+                <DataGridTextColumn Header="Статус звонка" Binding="{Binding StatusCalls.Name}" Width="*"/>
+                <DataGridTextColumn Header="Время звонка" Binding="{Binding DateTimeCall}" Width="*"/>
+                <DataGridTextColumn Header="Продолжительность звонка в секундах" Binding="{Binding Duration}" Width="*"/>
+                <DataGridTemplateColumn Width="Auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Click="Edit" Content="🖊" Width="Auto"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Page>

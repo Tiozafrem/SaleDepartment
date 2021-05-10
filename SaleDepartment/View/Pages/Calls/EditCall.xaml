@@ -4,11 +4,63 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:SaleDepartment.View.Pages.Calls"
+      xmlns:wpfTool="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="EditCall">
 
     <Grid>
-        
+        <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+            <StackPanel>
+
+                <GroupBox Header="Телефон клиента">
+                    <ComboBox IsTextSearchEnabled="True" x:Name="PhoneCmb" DisplayMemberPath="Phone" 
+                              SelectedItem="{Binding Clients}" HorizontalAlignment="Left"/>
+                </GroupBox>
+                <GroupBox Header="Фамилия и имя клиента">
+                    <TextBlock HorizontalAlignment="Left">
+                        <Run Text="{Binding Clients.Firstname}"/>
+                        <Run Text=" "/>
+                        <Run Text="{Binding Clients.Lastname}"/>
+                    </TextBlock>
+                </GroupBox>
+                <GroupBox Header="E-mail клиента">
+                    <TextBlock Text="{Binding Clients.E_mail}" HorizontalAlignment="Left"/>
+                </GroupBox>
+                <GroupBox Header="Дата звонка">
+                    <!--<DatePicker SelectedDate="{Binding DateTimeCall}"/>-->
+                    <wpfTool:DateTimePicker Value="{Binding DateTimeCall}"/>
+                </GroupBox>
+                <GroupBox Header="Стаутс звонка">
+                    <ComboBox x:Name="StatusCallCmb"  HorizontalAlignment="Left"
+                              DisplayMemberPath="Name" SelectedItem="{Binding StatusCalls}" />
+                </GroupBox>
+                <Grid Height="200">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.2*"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="Все товары"/>
+                    
+                    <TextBlock Grid.Column="1" Text="Товары заказанные в звонке"/>
+                    <ListBox Grid.Row="1" x:Name="AllProdcutLsb"
+                             DisplayMemberPath="Name" MouseDoubleClick="AddProduct"/>
+                    <ListBox Grid.Row="1" Grid.Column="1" x:Name="SelectedProductLsb" 
+                             DisplayMemberPath="Products.Name" MouseDoubleClick="DeleteProduct"/>
+                </Grid>
+
+                <Grid>
+                    <Button Content="Сохранить" Click="Save" HorizontalAlignment="Left"/>
+                    <Button Content="Позвонить" Click="Call" HorizontalAlignment="Center"/>
+                    <Button x:Name="DeleteBtn" Content="Удалить" Click="Delete" HorizontalAlignment="Right"/>
+                </Grid>
+
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 </Page>

@@ -20,9 +20,16 @@ namespace SaleDepartment.View.Pages.Calls
     /// </summary>
     public partial class AllCall : Page
     {
+        private Helper.CallHelper callHelper = new Helper.CallHelper();
         public AllCall()
         {
             InitializeComponent();
+            CallDtg.ItemsSource = callHelper.GetCall();
+        }
+
+        private void Edit(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new EditCall(sender as Button));
         }
     }
 }
