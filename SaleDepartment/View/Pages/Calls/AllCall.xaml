@@ -11,11 +11,10 @@
     <Grid>
         <DataGrid x:Name="CallDtg">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Телефон клиента" Binding="{Binding Clients.Phone}" Width="*"/>
-                <DataGridTextColumn Header="Пол" Binding="{Binding Clients.Genders.Name}" Width="*"/>
-                <DataGridTextColumn Header="Статус звонка" Binding="{Binding StatusCalls.Name}" Width="*"/>
-                <DataGridTextColumn Header="Время звонка" Binding="{Binding DateTimeCall}" Width="*"/>
-                <DataGridTextColumn Header="Продолжительность звонка в секундах" Binding="{Binding Duration}" Width="*"/>
+                <DataGridTextColumn Header="Телефон клиента" Binding="{Binding Clients.Phone}" Width="0.8*"/>
+                <DataGridTextColumn Header="Пол" Binding="{Binding Clients.Genders.Name}" Width="0.5*"/>
+                <DataGridTextColumn Header="Статус звонка" Binding="{Binding StatusCalls.Name}" Width="0.7*"/>
+                <DataGridTextColumn Header="Время звонка" Binding="{Binding DateTimeCall}" Width="0.8*"/>
                 <DataGridTemplateColumn Width="Auto">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>

@@ -6,8 +6,8 @@
         xmlns:local="clr-namespace:SaleDepartment.View.Windows"
         mc:Ignorable="d"
         Title="Отдел Продаж"
-        MinHeight="350" MinWidth="700"
-        Height="450" Width="800"
+        MinHeight="350" MinWidth="900"
+        Height="450" Width="1000"
         >
     <Grid>
         <Grid.RowDefinitions>

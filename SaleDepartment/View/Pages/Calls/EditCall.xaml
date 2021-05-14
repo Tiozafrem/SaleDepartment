@@ -28,7 +28,6 @@
                     <TextBlock Text="{Binding Clients.E_mail}" HorizontalAlignment="Left"/>
                 </GroupBox>
                 <GroupBox Header="Дата звонка">
-                    <!--<DatePicker SelectedDate="{Binding DateTimeCall}"/>-->
                     <wpfTool:DateTimePicker Value="{Binding DateTimeCall}"/>
                 </GroupBox>
                 <GroupBox Header="Стаутс звонка">

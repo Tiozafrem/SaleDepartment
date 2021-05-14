@@ -24,6 +24,8 @@
           <Property Name="date_time_call" Type="datetime" Nullable="false" />
           <Property Name="duration" Type="int" />
           <Property Name="is_actual" Type="bit" Nullable="false" />
+          <Property Name="addres_delivery" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="date_time_delivery" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="clients">
           <Key>
@@ -346,6 +348,8 @@
           <NavigationProperty Name="StatusCalls" Relationship="SaleDepartmentModel.FK_calls_status_calls" FromRole="calls" ToRole="StatusCall" />
           <NavigationProperty Name="Users" Relationship="SaleDepartmentModel.FK_calls_users" FromRole="calls" ToRole="User" />
           <Property Name="IsActual" Type="Boolean" Nullable="false" />
+          <Property Name="AddresDelivery" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="DateTimeDelivery" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
         <Association Name="FK_call_products_calls">
           <End Type="SaleDepartmentModel.Call" Role="calls" Multiplicity="1">
@@ -483,6 +487,8 @@
           <EntitySetMapping Name="Call">
             <EntityTypeMapping TypeName="SaleDepartmentModel.Call">
               <MappingFragment StoreEntitySet="calls">
+                <ScalarProperty Name="DateTimeDelivery" ColumnName="date_time_delivery" />
+                <ScalarProperty Name="AddresDelivery" ColumnName="addres_delivery" />
                 <ScalarProperty Name="IsActual" ColumnName="is_actual" />
                 <ScalarProperty Name="Duration" ColumnName="duration" />
                 <ScalarProperty Name="DateTimeCall" ColumnName="date_time_call" />

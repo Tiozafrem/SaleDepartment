@@ -11,11 +11,11 @@
     <Grid>
         <DataGrid x:Name="ClientDtg">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Имя" Binding="{Binding Firstname}" Width="*"/>
-                <DataGridTextColumn Header="Фамилия" Binding="{Binding Lastname}" Width="*"/>
-                <DataGridTextColumn Header="Телефон" Binding="{Binding Phone}" Width="*"/>
-                <DataGridTextColumn Header="E-mail" Binding="{Binding E_mail}" Width="*"/>
-                <DataGridTextColumn Header="Пол" Binding="{Binding Genders.Name}" Width="*"/>
+                <DataGridTextColumn Header="Имя" Binding="{Binding Firstname}" Width="0.8*"/>
+                <DataGridTextColumn Header="Фамилия" Binding="{Binding Lastname}" Width="0.8*"/>
+                <DataGridTextColumn Header="Телефон" Binding="{Binding Phone}" Width="0.8*"/>
+                <DataGridTextColumn Header="E-mail" Binding="{Binding E_mail}" Width="0.8*"/>
+                <DataGridTextColumn Header="Пол" Binding="{Binding Genders.Name}" Width="0.5*"/>
                 <DataGridTemplateColumn Width="Auto">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
