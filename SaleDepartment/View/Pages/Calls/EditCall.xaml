@@ -28,11 +28,19 @@
                     <TextBlock Text="{Binding Clients.E_mail}" HorizontalAlignment="Left"/>
                 </GroupBox>
                 <GroupBox Header="Дата звонка">
-                    <wpfTool:DateTimePicker Value="{Binding DateTimeCall}"/>
+                    <wpfTool:DateTimePicker Name="CallDtp" Value="{Binding DateTimeCall}"  Width="210"
+                                            Minimum="01.01.2000" HorizontalAlignment="Left"/>
                 </GroupBox>
                 <GroupBox Header="Стаутс звонка">
                     <ComboBox x:Name="StatusCallCmb"  HorizontalAlignment="Left"
                               DisplayMemberPath="Name" SelectedItem="{Binding StatusCalls}" />
+                </GroupBox>
+                <GroupBox Header="Адрес доставки">
+                    <TextBox Text="{Binding AddresDelivery}"/>
+                </GroupBox>
+                <GroupBox Header="Дата и время доставки">
+                    <wpfTool:DateTimePicker Value="{Binding DateTimeDelivery}" Width="210"
+                                            Minimum="01.01.2000" HorizontalAlignment="Left"/>
                 </GroupBox>
                 <Grid Height="200">
 
@@ -55,7 +63,6 @@
 
                 <Grid>
                     <Button Content="Сохранить" Click="Save" HorizontalAlignment="Left"/>
-                    <Button Content="Позвонить" Click="Call" HorizontalAlignment="Center"/>
                     <Button x:Name="DeleteBtn" Content="Удалить" Click="Delete" HorizontalAlignment="Right"/>
                 </Grid>
 

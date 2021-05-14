@@ -75,5 +75,10 @@ namespace SaleDepartment.View.Windows
             Environment.Exit(0);
         }
 
+        private void MyCab(object sender, RoutedEventArgs e)
+        {
+            modelHelper.RollBack();
+            contentFrame.Navigate(new Pages.Users.CabPage());
+        }
     }
 }

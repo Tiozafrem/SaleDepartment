@@ -27,6 +27,12 @@ namespace SaleDepartment.Helper
             return editCall;
         }
 
+        public Model.Call GetEditCall()
+        {
+            if (editCall == null)
+                editCall = new Model.Call();
+            return editCall;
+        }
         public bool Delete()
         {
             if (MsgBoxHelper.ShowQuestion("Вы действительно хотите удалить этот звонок?"))
@@ -39,10 +45,9 @@ namespace SaleDepartment.Helper
 
         public bool SaveClient()
         {
-                return TrySave();
             try
             {
-                //editCall.CallProducts = productHelper.Products.ToList(); 
+                return TrySave();
 
             }
             catch (Exception ex)

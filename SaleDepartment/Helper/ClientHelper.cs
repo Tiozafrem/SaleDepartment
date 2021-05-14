@@ -60,7 +60,7 @@ namespace SaleDepartment.Helper
         {
             try
             {
-                System.Net.Mail.MailAddress ad = new System.Net.Mail.MailAddress(editClient.E_mail);
+                System.Net.Mail.MailAddress E_mail = new System.Net.Mail.MailAddress(editClient.E_mail);
                 return TrySave();
 
             }

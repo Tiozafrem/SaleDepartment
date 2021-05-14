@@ -24,14 +24,14 @@ namespace SaleDepartment.View.Pages.Calls
         private Helper.StatusCallHelper statusCallHelper = new Helper.StatusCallHelper();
         private Helper.ClientHelper clientHelper = new Helper.ClientHelper();
         private Helper.ProductHelper productHelper;
+        private Helper.CallProductsHelper callProductsHelper;
         public EditCall()
         {
             InitializeComponent();
             DeleteBtn.Visibility = Visibility.Collapsed;
             this.DataContext = callHelper.NewCall();
             productHelper = new Helper.ProductHelper();
-            LoadCmb();
-            LoadLsb();
+            LoadData();
         }
 
         private Model.Call test = new Model.Call();
@@ -42,6 +42,12 @@ namespace SaleDepartment.View.Pages.Calls
             test = callHelper.GetCall(button);
             this.DataContext = callHelper.GetCall(button);
             productHelper = new Helper.ProductHelper(callHelper.GetCall(button));
+            LoadData();
+        }
+
+        private void LoadData()
+        {
+            callProductsHelper = new Helper.CallProductsHelper(callHelper);
             LoadCmb();
             LoadLsb();
         }
@@ -49,8 +55,7 @@ namespace SaleDepartment.View.Pages.Calls
         {
 
             AllProdcutLsb.ItemsSource = productHelper.GetProducts();
-           // SelectedProductLsb.ItemsSource = productHelper.GetProducts();
-            SelectedProductLsb.ItemsSource = test.CallProducts.ToList();
+            SelectedProductLsb.ItemsSource = callProductsHelper.GetCallProducts();
         }
 
         private void LoadCmb()
@@ -65,10 +70,6 @@ namespace SaleDepartment.View.Pages.Calls
                 DeleteBtn.Visibility = Visibility.Visible;
         }
 
-        private void Call(object sender, RoutedEventArgs e)
-        {
-            NavigationService.Navigate(new Calls.EditCall());
-        }
         private void Delete(object sender, RoutedEventArgs e)
         {
             if (callHelper.Delete())
@@ -77,27 +78,13 @@ namespace SaleDepartment.View.Pages.Calls
 
         private void DeleteProduct(object sender, MouseButtonEventArgs e)
         {
-            if (SelectedProductLsb.SelectedItem is Model.CallProduct product)
-            {
-                var te = Helper.ModelHelper.Context.Call.FirstOrDefault(i => i.Id == 3);
-                te.CallProducts.Remove(te.CallProducts.FirstOrDefault(i => i.id == 3));
-                //Helper.ModelHelper.Context.CallProduct.Remove(test.CallProducts.FirstOrDefault(i => i.id == product.id));
-                //var hep =  test.CallProducts.Remove(product);
-                //var tete = Helper.ModelHelper.Context.Product.Where(i => i.Id == product.ProductId).ToList().Remove(product.Products);
-               // Helper.ModelHelper.Context.CallProduct.RemoveRange(Helper.ModelHelper.Context.CallProduct.Where(i => i.id >= 1000).ToList());
-                
-            }
-            
+            callProductsHelper.RemoveCallProduct(SelectedProductLsb.SelectedItem);        
             LoadLsb();
         }
 
         private void AddProduct(object sender, MouseButtonEventArgs e)
         {
-            if (AllProdcutLsb.SelectedItem is Model.Product product)
-            {
-                test.CallProducts.Add(new Model.CallProduct() { ProductId = product.Id, Products = product, CallId = test.Id });
-               // productHelper.Products.Add(product);
-            }
+            callProductsHelper.AddCallProduct(AllProdcutLsb.SelectedItem);
             LoadLsb();
         }
     }

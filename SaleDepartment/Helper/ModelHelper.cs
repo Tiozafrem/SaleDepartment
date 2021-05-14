@@ -23,22 +23,21 @@ namespace SaleDepartment.Helper
 
         protected bool TrySave()
         {
-            Context.SaveChanges();
-            //try
-            //{
-            //    Context.SaveChanges();
-            //    MsgBoxHelper.ShowInfo("Изменения успешны сохранены");
-            //}
-            //catch (System.Data.Entity.Core.EntityException)
-            //{
-            //    MsgBoxHelper.ShowError("Ошибка подклюения к базе данных");
-            //    return false;
-            //}
-            //catch (Exception ex)
-            //{
-            //    MsgBoxHelper.ShowError(ex);
-            //    return false;
-            //}
+            try
+            {
+                Context.SaveChanges();
+                MsgBoxHelper.ShowInfo("Изменения успешны сохранены");
+            }
+            catch (System.Data.Entity.Core.EntityException)
+            {
+                MsgBoxHelper.ShowError("Ошибка подклюения к базе данных");
+                return false;
+            }
+            catch (Exception ex)
+            {
+                MsgBoxHelper.ShowError(ex);
+                return false;
+            }
             return true;
         }
     }

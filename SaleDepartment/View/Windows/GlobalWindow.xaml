@@ -17,6 +17,7 @@
 
         <Label Content="Отдел продаж" Grid.Row="0"/>
         <Button Content="Выйти" HorizontalAlignment="Right" Grid.Row="0" Click="Exit"/>
+        <Button Content="👤" HorizontalAlignment="Left" Grid.Row="0" Click="MyCab" Width="Auto"/>
 
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
@@ -34,7 +35,6 @@
                 </TreeViewItem>
                 <TreeViewItem Header="Звонки" IsExpanded="True">
                     <TreeViewItem Header="Новый звонок" Selected="NewCall"/>
-                    <TreeViewItem Header="Все звонки" Selected="AllCall"/>
                     <TreeViewItem Header="Все мои звонки" Selected="AllMyCall"/>
                 </TreeViewItem>
             </TreeView>

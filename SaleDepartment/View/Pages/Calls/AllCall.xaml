@@ -12,9 +12,16 @@
         <DataGrid x:Name="CallDtg">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Телефон клиента" Binding="{Binding Clients.Phone}" Width="0.8*"/>
-                <DataGridTextColumn Header="Пол" Binding="{Binding Clients.Genders.Name}" Width="0.5*"/>
+                <DataGridTextColumn Header="E-mail клиента" Binding="{Binding Clients.E_mail}" Width="0.8*"/>
                 <DataGridTextColumn Header="Статус звонка" Binding="{Binding StatusCalls.Name}" Width="0.7*"/>
                 <DataGridTextColumn Header="Время звонка" Binding="{Binding DateTimeCall}" Width="0.8*"/>
+                <DataGridTemplateColumn Header="Выбранные продукты" Width="0.9*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <ListBox ItemsSource="{Binding CallProducts}" DisplayMemberPath="Products.Name"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
                 <DataGridTemplateColumn Width="Auto">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>

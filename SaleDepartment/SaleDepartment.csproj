@@ -84,6 +84,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Helper\CallHelper.cs" />
+    <Compile Include="Helper\CallProductsHelper.cs" />
     <Compile Include="Helper\ClientHelper.cs" />
     <Compile Include="Helper\GenderHelper.cs" />
     <Compile Include="Helper\ModelHelper.cs" />
@@ -144,6 +145,9 @@
     </Compile>
     <Compile Include="View\Pages\Products\EditProduct.xaml.cs">
       <DependentUpon>EditProduct.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Users\CabPage.xaml.cs">
+      <DependentUpon>CabPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Windows\AuthWindow.xaml.cs">
       <DependentUpon>AuthWindow.xaml</DependentUpon>
@@ -208,6 +212,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Pages\Products\EditProduct.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\Users\CabPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

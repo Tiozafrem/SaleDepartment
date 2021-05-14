@@ -48,10 +48,6 @@ namespace SaleDepartment.View.Pages.Clients
                 DeleteBtn.Visibility = Visibility.Visible;
         }
 
-        private void Call(object sender, RoutedEventArgs e)
-        {
-            NavigationService.Navigate(new Calls.EditCall());
-        }
         private void Delete(object sender, RoutedEventArgs e)
         {
             if (clientHelper.Delete())
