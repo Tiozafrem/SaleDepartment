@@ -22,7 +22,7 @@ namespace SaleDepartment.Helper
 
         public Model.Call NewCall()
         {
-            editCall = new Model.Call();
+            editCall = new Model.Call() { Users = Context.User.FirstOrDefault(i => i.Id == UserHelper.UserId)};
             Context.Call.Add(editCall);
             return editCall;
         }
@@ -43,12 +43,25 @@ namespace SaleDepartment.Helper
             return false;
         }
 
-        public bool SaveClient()
+        public bool SaveCall()
         {
             try
             {
+                StringBuilder stringBuilder = new StringBuilder();
+                if (editCall.StatusCalls == null || editCall.Clients == null)
+                {
+                    stringBuilder.AppendLine("Выберите пункты из списка");
+                }
+                if (editCall.Duration < 1 && editCall.Duration != null)
+                {
+                    stringBuilder.AppendLine("Продолжительность звонка не может быть меньше 1 секунды.");
+                }
+                if(stringBuilder.Length > 0)
+                {
+                    MsgBoxHelper.ShowWarning(stringBuilder.ToString());
+                    return false;
+                }
                 return TrySave();
-
             }
             catch (Exception ex)
             {

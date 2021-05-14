@@ -24,8 +24,8 @@
           <Property Name="date_time_call" Type="datetime" Nullable="false" />
           <Property Name="duration" Type="int" />
           <Property Name="is_actual" Type="bit" Nullable="false" />
-          <Property Name="addres_delivery" Type="nvarchar" MaxLength="250" Nullable="false" />
-          <Property Name="date_time_delivery" Type="datetime" Nullable="false" />
+          <Property Name="addres_delivery" Type="nvarchar" MaxLength="250" />
+          <Property Name="date_time_delivery" Type="datetime" />
         </EntityType>
         <EntityType Name="clients">
           <Key>
@@ -342,14 +342,14 @@
           <Property Name="UserId" Type="Int32" Nullable="false" />
           <Property Name="StatusCallId" Type="Int32" Nullable="false" />
           <Property Name="DateTimeCall" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Duration" Type="Int32" />
+          <Property Name="Duration" Type="Int32" Nullable="true" />
           <NavigationProperty Name="CallProducts" Relationship="SaleDepartmentModel.FK_call_products_calls" FromRole="calls" ToRole="call_products" />
           <NavigationProperty Name="Clients" Relationship="SaleDepartmentModel.FK_calls_peoples" FromRole="calls" ToRole="Client" />
           <NavigationProperty Name="StatusCalls" Relationship="SaleDepartmentModel.FK_calls_status_calls" FromRole="calls" ToRole="StatusCall" />
           <NavigationProperty Name="Users" Relationship="SaleDepartmentModel.FK_calls_users" FromRole="calls" ToRole="User" />
           <Property Name="IsActual" Type="Boolean" Nullable="false" DefaultValue="True" />
-          <Property Name="AddresDelivery" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="DateTimeDelivery" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="AddresDelivery" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="true" />
+          <Property Name="DateTimeDelivery" Type="DateTime" Precision="3" Nullable="true" />
         </EntityType>
         <Association Name="FK_call_products_calls">
           <End Type="SaleDepartmentModel.Call" Role="calls" Multiplicity="1">

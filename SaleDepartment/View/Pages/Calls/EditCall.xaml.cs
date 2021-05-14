@@ -66,7 +66,7 @@ namespace SaleDepartment.View.Pages.Calls
 
         private void Save(object sender, RoutedEventArgs e)
         {
-            if (callHelper.SaveClient())
+            if (callHelper.SaveCall())
                 DeleteBtn.Visibility = Visibility.Visible;
         }
 

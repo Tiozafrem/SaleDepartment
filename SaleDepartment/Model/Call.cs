@@ -29,7 +29,7 @@ namespace SaleDepartment.Model
         public Nullable<int> Duration { get; set; }
         public bool IsActual { get; set; }
         public string AddresDelivery { get; set; }
-        public System.DateTime DateTimeDelivery { get; set; }
+        public Nullable<System.DateTime> DateTimeDelivery { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CallProduct> CallProducts { get; set; }
