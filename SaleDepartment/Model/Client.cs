@@ -17,6 +17,7 @@ namespace SaleDepartment.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Client()
         {
+            this.IsActual = true;
             this.Calls = new HashSet<Call>();
         }
     

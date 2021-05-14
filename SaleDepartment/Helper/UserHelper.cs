@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace SaleDepartment.Helper
@@ -44,7 +45,19 @@ namespace SaleDepartment.Helper
         {
             try
             {
-                System.Net.Mail.MailAddress E_mail = new System.Net.Mail.MailAddress(Context.User.FirstOrDefault(i => i.Id == UserId).E_mail);
+                Model.User user = Context.User.FirstOrDefault(i => i.Id == UserId);
+                StringBuilder stringBuilder = new StringBuilder();
+                if (user.Genders == null || String.IsNullOrWhiteSpace(user.E_mail) || String.IsNullOrWhiteSpace(user.Firstname) || String.IsNullOrWhiteSpace(user.Lastname) || String.IsNullOrWhiteSpace(user.Phone))
+                {
+                    stringBuilder.AppendLine("Необходимо заполнить все поля.");
+                }
+                stringBuilder.Append(PhoneHelper.CheckPhone(user.Phone));
+                if (stringBuilder.Length > 0)
+                {
+                    MsgBoxHelper.ShowWarning(stringBuilder.ToString());
+                    return false;
+                }
+                System.Net.Mail.MailAddress E_mail = new System.Net.Mail.MailAddress(user.E_mail);
                 return TrySave();
 
             }

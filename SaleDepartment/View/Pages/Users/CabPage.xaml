@@ -12,21 +12,22 @@
         <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
             <StackPanel>
 
-                <GroupBox Header="Имя">
+                <GroupBox Header="Имя*">
                     <TextBox MaxLength="50" Text="{Binding Firstname}"/>
                 </GroupBox>
-                <GroupBox Header="Фамилия">
+                <GroupBox Header="Фамилия*">
                     <TextBox MaxLength="50" Text="{Binding Lastname}"/>
                 </GroupBox>
-                <GroupBox Header="Телефон">
+                <GroupBox Header="Телефон*">
                     <TextBox MaxLength="20" Text="{Binding Phone}"/>
                 </GroupBox>
-                <GroupBox Header="E-mail">
+                <GroupBox Header="E-mail*">
                     <TextBox MaxLength="255" Text="{Binding E_mail}"/>
                 </GroupBox>
-                <GroupBox Header="Пол">
+                <GroupBox Header="Пол*">
                     <ComboBox x:Name="GenderCmb" DisplayMemberPath="Name" SelectedItem="{Binding Genders}" HorizontalAlignment="Left"/>
                 </GroupBox>
+                <TextBlock Text="Необходимо заполнить все поля со *"/>
                 <Grid>
                     <Button Content="Сохранить" Click="Save" HorizontalAlignment="Left"/>
                 </Grid>

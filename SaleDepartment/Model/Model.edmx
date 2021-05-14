@@ -259,7 +259,7 @@
           <Property Name="Price" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
           <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="Description" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-          <Property Name="IsActual" Type="Boolean" Nullable="false" />
+          <Property Name="IsActual" Type="Boolean" Nullable="false" DefaultValue="True" />
           <NavigationProperty Name="CallProducts" Relationship="SaleDepartmentModel.FK_call_products_products" FromRole="Product" ToRole="call_products" />
         </EntityType>
         <EntityType Name="StatusCall">
@@ -281,7 +281,7 @@
           <Property Name="GenderId" Type="Int32" Nullable="false" />
           <Property Name="Phone" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="E_mail" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="IsActual" Type="Boolean" Nullable="false" />
+          <Property Name="IsActual" Type="Boolean" Nullable="false" DefaultValue="True" />
           <NavigationProperty Name="Genders" Relationship="SaleDepartmentModel.FK_users_genders" FromRole="users" ToRole="genders" />
           <NavigationProperty Name="Calls" Relationship="SaleDepartmentModel.FK_calls_users" FromRole="User" ToRole="calls" />
         </EntityType>
@@ -307,7 +307,7 @@
           <Property Name="Phone" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="E_mail" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="GenderId" Type="Int32" Nullable="false" />
-          <Property Name="IsActual" Type="Boolean" Nullable="false" />
+          <Property Name="IsActual" Type="Boolean" Nullable="false" DefaultValue="True" />
           <NavigationProperty Name="Genders" Relationship="SaleDepartmentModel.FK_peoples_genders" FromRole="clients" ToRole="Gender" />
           <NavigationProperty Name="Calls" Relationship="SaleDepartmentModel.FK_calls_peoples" FromRole="Client" ToRole="calls" />
         </EntityType>
@@ -347,7 +347,7 @@
           <NavigationProperty Name="Clients" Relationship="SaleDepartmentModel.FK_calls_peoples" FromRole="calls" ToRole="Client" />
           <NavigationProperty Name="StatusCalls" Relationship="SaleDepartmentModel.FK_calls_status_calls" FromRole="calls" ToRole="StatusCall" />
           <NavigationProperty Name="Users" Relationship="SaleDepartmentModel.FK_calls_users" FromRole="calls" ToRole="User" />
-          <Property Name="IsActual" Type="Boolean" Nullable="false" />
+          <Property Name="IsActual" Type="Boolean" Nullable="false" DefaultValue="True" />
           <Property Name="AddresDelivery" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="DateTimeDelivery" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>

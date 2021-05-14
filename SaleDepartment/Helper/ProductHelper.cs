@@ -74,6 +74,16 @@ namespace SaleDepartment.Helper
 
         public bool SaveProduct()
         {
+            StringBuilder stringBuilder = new StringBuilder();
+            if (String.IsNullOrWhiteSpace(editProduct.Name))
+                stringBuilder.AppendLine("Необходимо заполнить имя товара.");
+            if (editProduct.Price < 1 || editProduct.Price > 99999999)
+                stringBuilder.AppendLine("Введите корректное число.");
+            if (stringBuilder.Length > 0)
+            {
+                MsgBoxHelper.ShowWarning(stringBuilder.ToString());
+                return false;
+            }
             return TrySave();
         }
     }

@@ -11,16 +11,16 @@
     <Grid>
         <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
             <StackPanel>
-                <GroupBox Header="Имя продукта">
+                <GroupBox Header="Имя продукта*">
                     <TextBox MaxLength="50" Text="{Binding Name}"/>
                 </GroupBox>
                 <GroupBox Header="Описание продукта">
                     <TextBox MaxLength="1000" Text="{Binding Description}" TextWrapping="Wrap" AcceptsReturn="True" Height="70"/>
                 </GroupBox>
-                <GroupBox Header="Цена продукта">
-                    <TextBox MaxLength="13" Text="{Binding Price}"/>
+                <GroupBox Header="Цена продукта*">
+                    <TextBox Name="Price" MaxLength="13" Text="{Binding Price}"/>
                 </GroupBox>
-                <Image x:Name="Image">
+                <Image x:Name="Image" Height="150">
                     <Image.Source>
                         <Binding Path="Image">
                             <Binding.TargetNullValue>
@@ -31,6 +31,7 @@
                         </Binding>
                     </Image.Source>
                 </Image>
+                <TextBlock Text="Необходимо заполнить все поля со *"/>
                 <Grid>
                     <Button Content="Сохранить" Click="Save" HorizontalAlignment="Left"/>
                     <Button Content="Новое изображение" Click="NewImage" HorizontalAlignment="Center" Width="150"/>

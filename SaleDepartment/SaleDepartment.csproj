@@ -89,6 +89,7 @@
     <Compile Include="Helper\GenderHelper.cs" />
     <Compile Include="Helper\ModelHelper.cs" />
     <Compile Include="Helper\MsgBoxHelper.cs" />
+    <Compile Include="Helper\PhoneHelper.cs" />
     <Compile Include="Helper\ProductHelper.cs" />
     <Compile Include="Helper\StatusCallHelper.cs" />
     <Compile Include="Helper\UserHelper.cs" />

@@ -60,6 +60,17 @@ namespace SaleDepartment.Helper
         {
             try
             {
+                StringBuilder stringBuilder = new StringBuilder();
+                if (editClient.Genders == null || String.IsNullOrWhiteSpace(editClient.E_mail) || String.IsNullOrWhiteSpace(editClient.Firstname) || String.IsNullOrWhiteSpace(editClient.Lastname) || String.IsNullOrWhiteSpace(editClient.Phone))
+                {
+                    stringBuilder.AppendLine("Необходимо заполнить все поля.");
+                }
+                stringBuilder.Append(PhoneHelper.CheckPhone(editClient.Phone));
+                if (stringBuilder.Length > 0)
+                {
+                    MsgBoxHelper.ShowWarning(stringBuilder.ToString());
+                    return false;
+                }
                 System.Net.Mail.MailAddress E_mail = new System.Net.Mail.MailAddress(editClient.E_mail);
                 return TrySave();
 

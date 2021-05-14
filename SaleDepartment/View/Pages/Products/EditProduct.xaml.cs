@@ -37,6 +37,8 @@ namespace SaleDepartment.View.Pages.Products
 
         private void Save(object sender, RoutedEventArgs e)
         {
+            if (!decimal.TryParse(Price.Text.Replace('.', ','), out decimal price))
+                return;
             if (productHelper.SaveProduct())
                 DeleteBtn.Visibility = Visibility.Visible;
         }
