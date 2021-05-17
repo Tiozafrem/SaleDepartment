@@ -19,8 +19,6 @@ namespace SaleDepartment.View.Windows
     /// </summary>
     public partial class AuthWindow : Window
     {
-        public string E_mail { get; set; }
-        public string Password { get; set; }
         private Helper.UserHelper userHelper = new Helper.UserHelper();
 
         public AuthWindow()
@@ -31,7 +29,7 @@ namespace SaleDepartment.View.Windows
 
         private void Login(object sender, RoutedEventArgs e)
         {
-            if (userHelper.Login(E_mail, Password))
+            if (userHelper.Login(E_mail.Text, Password.Password))
             {
                 GlobalWindow globalWindow = new GlobalWindow();
                 globalWindow.Show();
@@ -42,6 +40,12 @@ namespace SaleDepartment.View.Windows
         private void Exit(object sender, RoutedEventArgs e)
         {
             Environment.Exit(0);
+        }
+
+        private void NewUser(object sender, RoutedEventArgs e)
+        {
+            new RegistrationWindow().Show();
+            Close();
         }
     }
 }

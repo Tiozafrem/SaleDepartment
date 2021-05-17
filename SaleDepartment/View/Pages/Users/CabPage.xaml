@@ -27,6 +27,12 @@
                 <GroupBox Header="Пол*">
                     <ComboBox x:Name="GenderCmb" DisplayMemberPath="Name" SelectedItem="{Binding Genders}" HorizontalAlignment="Left"/>
                 </GroupBox>
+                <GroupBox Header="Пароль">
+                    <PasswordBox x:Name="Password"  MaxLength="50"/>
+                </GroupBox>
+                <GroupBox Header="Подтвердите пароль">
+                    <PasswordBox x:Name="PasswordSecond"  MaxLength="50"/>
+                </GroupBox>
                 <TextBlock Text="Необходимо заполнить все поля со *"/>
                 <Grid>
                     <Button Content="Сохранить" Click="Save" HorizontalAlignment="Left"/>

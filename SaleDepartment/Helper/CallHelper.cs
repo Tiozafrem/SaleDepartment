@@ -12,6 +12,25 @@ namespace SaleDepartment.Helper
         private Model.Call editCall;
         public ProductHelper productHelper = new ProductHelper();
 
+        public List<Model.Call> GetCall()
+        {
+            List<Model.Call> result;
+            try
+            {
+                result = Context.Call.Where(i => i.IsActual && i.UserId == UserHelper.UserId).ToList();
+            }
+            catch (System.Data.Entity.Core.EntityException)
+            {
+                MsgBoxHelper.ShowError("Ошибка подклюения к базе данных.");
+                result = new List<Model.Call>();
+            }
+            catch (Exception ex)
+            {
+                MsgBoxHelper.ShowError(ex);
+                result = new List<Model.Call>();
+            }
+            return result;
+        }
         public Model.Call GetCall(FrameworkElement button)
         {
 
@@ -68,28 +87,6 @@ namespace SaleDepartment.Helper
                 MsgBoxHelper.ShowError(ex);
             }
             return false;
-        }
-
-
-
-        public List<Model.Call> GetCall()
-        {
-            List<Model.Call> result;
-            try
-            {
-                result = Context.Call.Where(i => i.IsActual).ToList();
-            }
-            catch (System.Data.Entity.Core.EntityException)
-            {
-                MsgBoxHelper.ShowError("Ошибка подклюения к базе данных.");
-                result = new List<Model.Call>();
-            }
-            catch (Exception ex)
-            {
-                MsgBoxHelper.ShowError(ex);
-                result = new List<Model.Call>();
-            }
-            return result;
         }
 
     }

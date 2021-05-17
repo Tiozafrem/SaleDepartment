@@ -22,7 +22,7 @@ namespace SaleDepartment.View.Pages.Users
     {
         private Helper.UserHelper userHelper = new Helper.UserHelper();
         private Helper.GenderHelper genderHelper = new Helper.GenderHelper();
-        
+
 
         public CabPage()
         {
@@ -34,6 +34,18 @@ namespace SaleDepartment.View.Pages.Users
 
         private void Save(object sender, RoutedEventArgs e)
         {
+            if (!String.IsNullOrWhiteSpace(Password.Password) || !String.IsNullOrWhiteSpace(Password.Password))
+            {
+                if (Password.Password != PasswordSecond.Password)
+                {
+                    Helper.MsgBoxHelper.ShowWarning("Для смены пароля заполните оба поля для ввода пароля одинаковыми символами.");
+                }
+                else
+                {
+                    userHelper.SaveUser(Password.Password);
+                }
+                return;
+            }
             userHelper.SaveUser();
         }
 

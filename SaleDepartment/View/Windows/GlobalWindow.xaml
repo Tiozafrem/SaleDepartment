@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SaleDepartment.View.Windows"
         mc:Ignorable="d"
-        Title="Отдел Продаж"
+        Title="Отдел Продаж" Icon="/Resources/up_high_sales_business_finance_icon-icons.com_76287.ico"
         MinHeight="350" MinWidth="900"
         Height="450" Width="1000"
         >
@@ -15,7 +15,12 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
+        <UniformGrid HorizontalAlignment="Center" VerticalAlignment="Center" Columns="2" Rows="1">
+        <Image HorizontalAlignment="Center" Margin="15 5 0 5"
+            Source="/Resources/up_high_sales_business_finance_icon-icons.com_76287.png" />
         <Label Content="Отдел продаж" Grid.Row="0"/>
+            
+        </UniformGrid>
         <Button Content="Выйти" HorizontalAlignment="Right" Grid.Row="0" Click="Exit"/>
         <Button Content="👤" HorizontalAlignment="Left" Grid.Row="0" Click="MyCab" Width="Auto"/>
 

@@ -29,7 +29,7 @@
                 </GroupBox>
                 <GroupBox Header="Дата звонка*">
                     <wpfTool:DateTimePicker Name="CallDtp" Value="{Binding DateTimeCall}"  Width="210"
-                                            Minimum="01.01.2000" HorizontalAlignment="Left"/>
+                                            HorizontalAlignment="Left" TextAlignment="Left"/>
                 </GroupBox>
                 <GroupBox Header="Продолжительность звонка в секундах">
                     <TextBox x:Name="Duration" Text="{Binding Duration}" MaxLength="4"/>

@@ -9,7 +9,8 @@ namespace SaleDepartment.Helper
 {
     class UserHelper : ModelHelper
     {
-        public static int UserId = 300;
+        public static int UserId;
+        private Model.User newUser;
 
         public bool Login(string e_mail, string password)
         {
@@ -37,7 +38,33 @@ namespace SaleDepartment.Helper
 
         public Model.User GetUser()
         {
-            return Context.User.FirstOrDefault(i => i.Id == UserId);
+            try
+            {
+                return Context.User.FirstOrDefault(i => i.Id == UserId);
+
+            }
+            catch (Exception ex)
+            {
+                MsgBoxHelper.ShowError(ex);
+                return new Model.User();
+            }
+        }
+
+        public Model.User NewUser()
+        {
+            try
+            {
+                newUser = new Model.User();
+                Context.User.Add(newUser);
+                UserId = 0;
+                return newUser;
+
+            }
+            catch (Exception ex)
+            {
+                MsgBoxHelper.ShowError(ex);
+                return new Model.User();
+            }
         }
 
 
@@ -45,7 +72,43 @@ namespace SaleDepartment.Helper
         {
             try
             {
-                Model.User user = Context.User.FirstOrDefault(i => i.Id == UserId);
+                Model.User user;
+                if (UserId != 0)
+                    user = Context.User.FirstOrDefault(i => i.Id == UserId);
+                else
+                    user = newUser;
+                StringBuilder stringBuilder = new StringBuilder();
+                if (user.Genders == null || String.IsNullOrWhiteSpace(user.E_mail) || String.IsNullOrWhiteSpace(user.Firstname) || String.IsNullOrWhiteSpace(user.Lastname) || String.IsNullOrWhiteSpace(user.Phone))
+                {
+                    stringBuilder.AppendLine("Необходимо заполнить все поля.");
+                }
+                stringBuilder.Append(PhoneHelper.CheckPhone(user.Phone));
+                if (stringBuilder.Length > 0)
+                {
+                    MsgBoxHelper.ShowWarning(stringBuilder.ToString());
+                    return false;
+                }
+                System.Net.Mail.MailAddress E_mail = new System.Net.Mail.MailAddress(user.E_mail);
+                return TrySave();
+
+            }
+            catch (Exception ex)
+            {
+                MsgBoxHelper.ShowError(ex);
+            }
+            return false;
+        }
+
+        public bool SaveUser(string password)
+        {
+            try
+            {
+                Model.User user;
+                if (UserId != 0)
+                    user = Context.User.FirstOrDefault(i => i.Id == UserId);
+                else
+                    user = newUser;
+                user.Password = password;
                 StringBuilder stringBuilder = new StringBuilder();
                 if (user.Genders == null || String.IsNullOrWhiteSpace(user.E_mail) || String.IsNullOrWhiteSpace(user.Firstname) || String.IsNullOrWhiteSpace(user.Lastname) || String.IsNullOrWhiteSpace(user.Phone))
                 {
